@@ -1,32 +1,47 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<string> gray_code(int n)
+vector<string> generateGray(int n)
 {
-    vector<string> codes;
-    if (n == 0)
+
+    if (n <= 0)
+        return {"0"};
+
+    if (n == 1)
     {
-        codes.push_back("");
-        return codes;
+        return {"0", "1"};
     }
-    vector<string> prev_codes = gray_code(n - 1);
-    for (int i = 0; i < prev_codes.size(); i++)
+
+    vector<string> recAns =
+        generateGray(n - 1);
+    vector<string> mainAns;
+
+    for (int i = 0; i < recAns.size(); i++)
     {
-        codes.push_back("0" + prev_codes[i]);
+        string s = recAns[i];
+        mainAns.push_back("0" + s);
     }
-    for (int i = prev_codes.size() - 1; i >= 0; i--)
+
+    for (int i = recAns.size() - 1; i >= 0; i--)
     {
-        codes.push_back("1" + prev_codes[i]);
+        string s = recAns[i];
+        mainAns.push_back("1" + s);
     }
-    return codes;
+    return mainAns;
 }
+
+void generateGrayarr(int n)
+{
+    vector<string> arr;
+    arr = generateGray(n);
+
+    for (int i = 0; i < arr.size();
+         i++)
+        cout << arr[i] << endl;
+}
+
 int main()
 {
-    int n;
-    cin >> n;
-    vector<string> v = gray_code(n);
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << endl;
-    }
+    generateGrayarr(3);
+    return 0;
 }

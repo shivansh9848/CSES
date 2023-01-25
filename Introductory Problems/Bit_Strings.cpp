@@ -1,6 +1,6 @@
 #include "bits/stdc++.h"
 using namespace std;
-
+#define MOD 1000000007 
 int main()
 {
     long long n;
@@ -9,7 +9,7 @@ int main()
     while (n--)
     {
         ans *= 2;
-        ans = ans % (1000000007);
+        ans = ans % MOD;
     }
-    cout << ans % (1000000007) << endl;
+    cout << ans % MOD << endl;
 }
